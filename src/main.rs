@@ -11,9 +11,13 @@ fn convert_md_to_html(md_files: Vec<String>, output_dir: &str) -> io::Result<()>
         fs::create_dir(output_dir)?;
     }
 
-    let mut index_content = String::from(
+    let index_file_path = Path::new(output_dir).join("index.html");
+    let mut index_file = File::create(index_file_path)?;
+
+    write!(
+        index_file,
         "<html><head><title>Index of Newbies Bites Part II</title></head><body><h1>Index of Newbie Bites Part II</h1><ul>"
-    );
+    )?;
 
     for md_file in md_files {
         let subdir_name = Path::new(&md_file)
@@ -41,17 +45,17 @@ fn convert_md_to_html(md_files: Vec<String>, output_dir: &str) -> io::Result<()>
             subdir_name, html_content
         )?;
 
-        index_content.push_str(&format!(
+        write!(
+            index_file,
             "<li><a href=\"{}\">{}</a></li>\n",
             html_file_name, subdir_name
-        ));
+        )?;
     }
 
-    index_content.push_str("</ul></body></html>");
-
-    let index_file_path = Path::new(output_dir).join("index.html");
-    let mut index_file = File::create(index_file_path)?;
-    write!(index_file, "{}", index_content)?;
+    write!(
+        index_file,
+        "</ul></body></html>"
+    )?;
 
     println!("HTML pages and index generated in {output_dir}");
 
