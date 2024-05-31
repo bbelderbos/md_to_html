@@ -1,10 +1,10 @@
 # Convert markdown files to html Rust exercise
 
-In my journey of learning Rust, I decided to pick a small Python program that converts markdown files to html + makes an index page for those files, and rewrite it in Rust.
+In my journey of learning Rust, I decided to pick a small Python program that converts markdown files to html + makes an index page for those files, and rewrite it in Rust (with the help of AI of course).
 
 To learn the syntax and also see if I could speed it up.
 
-Seems I did :)
+Seems it did :)
 
 ```
 $ time python gen_html.py /Users/pybob/code/newbies-part2
