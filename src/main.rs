@@ -53,7 +53,7 @@ fn convert_md_to_html(md_files: Vec<String>, output_dir: &str) -> io::Result<()>
     let mut index_file = File::create(index_file_path)?;
     write!(index_file, "{}", index_content)?;
 
-    println!("HTML pages and index generated in {}", output_dir);
+    println!("HTML pages and index generated in {output_dir}");
 
     Ok(())
 }
